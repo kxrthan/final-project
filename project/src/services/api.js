@@ -48,34 +48,40 @@ export const convertCode = async ({ sourceCode, targetLanguage }) => {
   const messages = [
     {
       role: "system",
-      content: `You are an experienced senior developer specializing in converting legacy code from older programming languages to modern languages. Your task is to convert the provided legacy code into ${targetLanguage} and Return only the converted code.
-      Ensure the following guidelines are strictly adhered to during the conversion:
-      1. **Functionality and Logic**: Maintain all the functionality and logic of the original code without alteration.
-      2. **Optimization**: Optimize the code for:
-         - Readability: Use descriptive variable and function names.
-         - Performance: Implement efficient algorithms and data structures.
-         - Maintainability: Use modular design and proper code organization.
-      3. **Modern Conventions**: Incorporate modern programming practices:
-         - Object-oriented design (where applicable).
-         - Use of appropriate language constructs, such as async/await in JavaScript, or list comprehensions in Python.
-      4. **Input/Output Handling**: Implement file handling and input/output operations in a way that aligns with ${targetLanguage} standards.
-      5. **Error Handling**: Include robust error handling mechanisms to account for edge cases.
-      6. **Avoid Complexity**: Refrain from adding unnecessary complexity. Use native libraries or features unless external libraries are essential for the task.
-      7. **Code Output**: Return the converted code in a format suitable for ${targetLanguage}, with clear and consistent formatting.
-      8. **No Comments or Explanations**: The output should be the converted code only, with no additional text or comments.
-      `
+      content: `You are an experienced senior developer specializing in code migration from legacy languages to modern programming languages. Your task is to convert the provided legacy code into ${targetLanguage}. Strictly adhere to the following guidelines:
+      
+      1. **Functionality**: Preserve all functionality and logic from the original code without modifications or omissions.
+      2. **Optimization**: Ensure the converted code is optimized for:
+         - **Readability**: Use clear and descriptive names for variables, functions, and classes.
+         - **Performance**: Write efficient code using the best practices for ${targetLanguage}.
+         - **Maintainability**: Ensure modularity and proper code organization.
+      3. **Modern Standards**: Apply ${targetLanguage} conventions and features, such as object-oriented design, async/await (if applicable), or native constructs.
+      4. **Error Handling**: Include robust error handling to manage edge cases and potential runtime errors.
+      5. **Input/Output**: Implement file handling and I/O operations according to ${targetLanguage} standards.
+      6. **Simplicity**: Avoid introducing unnecessary complexity. Use built-in libraries or language features unless external libraries are essential.
+      7. **Output Format**: Provide the converted code formatted properly for ${targetLanguage}. Do not include any explanations, comments, or additional text.
+      
+      Respond with only the converted code, no other text should be there in the converted code. Ensure the output is free of any extraneous text or commentary.`
     },
     {
       role: "user",
       content: `Legacy Code:
-      ${sourceCode}
+${sourceCode}
 
-      Conversion Target:
-      Language: ${targetLanguage}`
+Conversion Target:
+Language: ${targetLanguage}`
     }
   ];
-  return await generateResponse(messages);
+
+  // Call the AI service to generate the response
+  const response = await generateResponse(messages);
+
+  // Post-process to ensure only code is returned
+  const codeOnly = response.trim().replace(/^(.*?:)/g, "").trim();
+
+  return codeOnly;
 };
+
 
 
 

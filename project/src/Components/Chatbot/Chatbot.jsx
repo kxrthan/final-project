@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import one from "../../assets/logos/one.png";
 import './Chatbot.css';
+ 
 
 const systemMessage = { role: 'system', content: 'Your task is to give  to documentation with an explanation to code given by the user.' };
 
@@ -9,7 +10,7 @@ const OPENAI_API_KEY = "sk-proj-VJmGlAlMCoQUFMAhYmsZjfjx40_TFjc-RrqfKfp16uUZC68v
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { message: "Hello, I'm your bot! Ask me anything!", sender: 'ChatGPT' }
+    { message: "Hello, I'm your bot! Ask me  about codebase!", sender: 'ChatGPT' }
   ]);
   const [isTyping, setIsTyping] = useState(false);
   const [input, setInput] = useState('');

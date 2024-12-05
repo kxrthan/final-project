@@ -1,8 +1,9 @@
 import React from 'react';
 import './Getstarted.css';
-
+import { useNavigate } from 'react-router-dom';
 
 const Getstarted = () => {
+  const navigate = useNavigate();
   
   return (
     <div className='getstarted'>
@@ -38,7 +39,9 @@ const Getstarted = () => {
         </p>
       </div>
       <div className='hello'>
-      <button className='btnn'>Start Now</button>
+      <button className="btnn" onClick={() => navigate('/code-converter')}>
+          Start Now
+        </button>
       </div>
     </div>
   );

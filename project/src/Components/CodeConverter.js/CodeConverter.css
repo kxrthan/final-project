@@ -12,6 +12,7 @@ body, html {
     background-color: #1c1e26;
     color: #fff;
     padding: 20px;
+    
   }
   
   .converter-container {
@@ -22,7 +23,7 @@ body, html {
     background: #2a2d3e;
     padding: 20px;
     border-radius: 8px;
-    margin-top: 20px;
+    margin-top: 70px;
   }
   
   h1 {
@@ -108,7 +109,7 @@ body, html {
     transition: background 0.3s ease;
   }
   
-  button:hover {
+  .buttons button:hover {
     background-color: #388e3c;
   }
   

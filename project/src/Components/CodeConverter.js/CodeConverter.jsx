@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './CodeConverter.css';
 import { convertCode, debugCode, optimizeCode, explainCode } from '../../services/api.js';
-import { generateExplanationPDF } from '../../Component/generateExplanationPDF/generateExplanationPDF.jsx'; // Import the new PDF generation function
-
+import { generateExplanationPDF } from '../../Components/generateExplanationPDF/generateExplanationPDF.jsx'; // Import the new PDF generation function
+import { useLocation } from 'react-router-dom';
 const CodeConverter = () => {
+
   const [sourceCode, setSourceCode] = useState('');
   const [targetLanguage, setTargetLanguage] = useState('');
   const [sourceLanguage, setSourceLanguage] = useState('Natural Language');
@@ -11,6 +12,7 @@ const CodeConverter = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(''); // State for handling errors
   const [outputFormat, setOutputFormat] = useState('PDF'); // State to select output format
+  const location = useLocation();
 
   const languages = [
     'JavaScript', 'Python', 'Java', 'C++', 'C#', 'Ruby', 'Go', 'Rust', 'Kotlin', 'Cobol'
@@ -85,14 +87,16 @@ const CodeConverter = () => {
       setLoading(false);
     }
   };
+  const isCodeConverterPage = location.pathname === '/converter';
   
 
   // Generate line numbers based on the number of lines in sourceCode
   const lineNumbers = Array.from({ length: sourceCode.split('\n').length }, (_, i) => i + 1);
 
   return (
+    
     <div className="code-converter">
-      <h1>Legacy Code Converter</h1>
+      <h1></h1>
       <div className="converter-container">
         <div className="language-select">
           <label>Target Program Language</label>

@@ -19,7 +19,10 @@ export const Navbar = () => {
 
   return (
     <nav className={`contianer ${sticky? 'dark-nav' : ''}`}>
-        <img src={logo} alt="" className='logo' />
+        
+        <Link to="hero">
+        <img src={logo} alt="Logo" className="logo" />
+      </Link>
         <ul>
             <li><Link to='hero' smooth={true} offset={0} duration={500}>Home</Link></li>
             
